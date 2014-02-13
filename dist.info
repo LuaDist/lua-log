@@ -1,0 +1,80 @@
+type = "x86"
+arch = "Windows"
+author = "Alexey Melnichuk"
+depends = {
+[[lua >= 5.1]],
+}
+
+desc = "Asynchronous logging library"
+version = "0.1.3"
+maintainer = "Alexey Melnichuk"
+files = {
+Runtime = {
+[[lib\lua\log.lua]],
+[[lib\lua\log\formatter\concat.lua]],
+[[lib\lua\log\formatter\format.lua]],
+[[lib\lua\log\formatter\mix.lua]],
+[[lib\lua\log\logformat\default.lua]],
+[[lib\lua\log\logformat\proxy.lua]],
+[[lib\lua\log\logformat\proxy\pack.lua]],
+[[lib\lua\log\logformat\syslog.lua]],
+[[lib\lua\log\writer\async\_private\server.lua]],
+[[lib\lua\log\writer\async\lane.lua]],
+[[lib\lua\log\writer\async\server\lane.lua]],
+[[lib\lua\log\writer\async\server\udp.lua]],
+[[lib\lua\log\writer\async\server\zmq.lua]],
+[[lib\lua\log\writer\async\udp.lua]],
+[[lib\lua\log\writer\async\zmq.lua]],
+[[lib\lua\log\writer\console.lua]],
+[[lib\lua\log\writer\console\color.lua]],
+[[lib\lua\log\writer\file.lua]],
+[[lib\lua\log\writer\file\by_day.lua]],
+[[lib\lua\log\writer\file\private\impl.lua]],
+[[lib\lua\log\writer\file\roll.lua]],
+[[lib\lua\log\writer\filter.lua]],
+[[lib\lua\log\writer\filter\lvl\eq.lua]],
+[[lib\lua\log\writer\filter\lvl\le.lua]],
+[[lib\lua\log\writer\format.lua]],
+[[lib\lua\log\writer\list.lua]],
+[[lib\lua\log\writer\net\server\udp.lua]],
+[[lib\lua\log\writer\net\server\zmq.lua]],
+[[lib\lua\log\writer\net\smtp.lua]],
+[[lib\lua\log\writer\net\udp.lua]],
+[[lib\lua\log\writer\net\zmq.lua]],
+[[lib\lua\log\writer\net\zmq\_private\compat.lua]],
+[[lib\lua\log\writer\net\zmq\_private\impl.lua]],
+[[lib\lua\log\writer\net\zmq\pub.lua]],
+[[lib\lua\log\writer\net\zmq\push.lua]],
+[[lib\lua\log\writer\net\zmq\srv\pub.lua]],
+[[lib\lua\log\writer\stderr.lua]],
+[[lib\lua\log\writer\stdout.lua]],
+}
+,
+Example = {
+[[share\lua-log\example\\async.lua]],
+[[share\lua-log\example\\async_lane.lua]],
+[[share\lua-log\example\\async_net.lua]],
+[[share\lua-log\example\\async_proxy.lua]],
+[[share\lua-log\example\\dump.lua]],
+[[share\lua-log\example\\email.lua]],
+[[share\lua-log\example\\filter.lua]],
+[[share\lua-log\example\\multi.lua]],
+[[share\lua-log\example\\net.lua]],
+[[share\lua-log\example\\proxy.lua]],
+[[share\lua-log\example\\server_lane.lua]],
+[[share\lua-log\example\\server_zmq.lua]],
+[[share\lua-log\example\\simple.lua]],
+[[share\lua-log\example\\simple_format.lua]],
+[[share\lua-log\example\\syslog.lua]],
+}
+,
+Data = {
+[[share\lua-log\README.md]],
+[[share\lua-log\LICENCE.txt]],
+}
+,
+}
+
+license = "MIT/X11"
+name = "lua-log"
+url = "https://github.com/moteus/lua-log"
