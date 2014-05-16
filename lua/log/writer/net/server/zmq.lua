@@ -2,6 +2,7 @@ local Z    = require "log.writer.net.zmq._private.compat"
 local IMPL = require "log.writer.net.zmq._private.impl"
 
 local zmq, ETERM, zstrerror, zassert, zrecv = Z.zmq, Z.ETERM, Z.strerror, Z.assert, Z.recv
+local zerrcode = Z.errcode
 
 local log_packer = require "log.logformat.proxy.pack"
 
@@ -35,8 +36,8 @@ function _M.run(writer, logformat, ctx, stype, address, addr_sync)
       local msg, lvl, now = unpack(msg)
       if msg and lvl and now then writer(logformat, msg, lvl, now) end
     else
-      if err == ETERM then break end
-      io.stderr:write('log.writer.net.zmq.server: ', err, zstrerror(err))
+      if zerrcode(err) == ETERM then break end
+      io.stderr:write('log.writer.net.zmq.server: ', tostring(err), zstrerror(err))
     end
   end
 

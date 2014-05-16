@@ -7,6 +7,7 @@ local zmq, zthreads, zpoller
 local zstrerror, zassert, ETERM
 local zconnect, zbind
 local zrecv_all, zrecv
+local zerrcode
 
 
 local function has_member(t, key)
@@ -41,7 +42,16 @@ if zmq then
   zpoller   = prequire "lzmq.poller"
   zthreads  = prequire "lzmq.threads"
   ETERM     = zmq.errors.ETERM
-  zstrerror = zmq.strerror
+  zstrerror = function(err) 
+    if type(err) == "number" then return zmq.strerror(err) end
+    if type(err) == "string" then return err end
+    return err:msg()
+  end
+  zerrcode  = function(err) 
+    if type(err) == "number" then return err end
+    if type(err) == "string" then return err end -- @todo extract no from string
+    return err:no()
+  end
   zassert   = zmq.assert
   zrecv_all = function(skt)       return skt:recv_all() end
   zconnect  = function(skt, addr) return skt:connect(addr) end
@@ -52,6 +62,7 @@ else
   zthreads  = prequire "zmq.threads"
   ETERM     = 'closed'
   zstrerror = function(err) return err end
+  zerrcode  = function(err) return err end
   zassert   = assert
   zrecv_all = function(skt)
     local t = {}
@@ -105,6 +116,7 @@ return {
   recv_all = zrecv_all;
   recv     = zrecv;
   strerror = zstrerror;
+  errcode  = zerrcode;
   assert   = zassert;
   ETERM    = ETERM;
   is_ctx   = is_ctx;
